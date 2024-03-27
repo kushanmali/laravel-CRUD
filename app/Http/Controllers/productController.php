@@ -29,6 +29,9 @@ class productController extends Controller
             
 
         ];
+        if($request->image!=""){
+            $rules['image'] ='required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
+        }
 
      $validator =Validator::make($request->all(),$rules);
 
@@ -43,9 +46,25 @@ class productController extends Controller
      $product ->price = $request->price;
      $product ->description = $request->description;
      $product ->save();
+
+     if($request->image!=""){
+
+        $image = $request->image;
+     $ext = $image->getClientOriginalExtension();
+     $imageName = time().'.'.$ext;
+
+     $image->move(public_path('images'),$imageName);
      
 
-     return redirect() ->route('products.list')->with('sucess', 'product added sucessfully');
+
+     $product ->image = $imageName;
+     $product ->save();
+
+     }    
+
+     
+
+    return redirect()->route('products.index')->with('success', 'product added successfully');
      
     
     }

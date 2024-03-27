@@ -15,13 +15,21 @@
     </div>
 
     <div class = 'container'>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-10 d-flex justify-content-end">
+                <a href="{{route('products.create')}}" class="btn btn-dark">Create</a>
+            </div>
+
+        </div>
         <div class = 'row d-flex justify-content-center'>
 
             @if (Session::has ('success'))
 
-            <div class = "col-md-10">
+            <div class = "col-md-10 mt-3">
 
-                {{Session::get('sucess')}}
+                <div class = "alert alert-success" >
+                    {{Session::get('success')}}
+                </div>
 
             </div>
                 
