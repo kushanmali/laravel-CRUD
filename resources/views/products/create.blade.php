@@ -68,10 +68,14 @@
                         </div>
                         <div class = 'mb-3'>
                             <label for="" class='form-lable h5' >Image</label>
-                            <input type="file" class="form-control form-control-lg" placeholder="Image" name="image">
+                            <input type="file" name="stu_img" id="webcamCaptureFile" multiple>
+                            @error('image')
+                            <p class = 'invalid-feedback'>{{$message}}</p>
+                                
+                            @enderror
                         </div>
                         <div class="d-grid">
-                            <button class="btn btn-lg btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-lg btn-primary">Submit</button>
                         </div>
                     </div>
                  </form>
